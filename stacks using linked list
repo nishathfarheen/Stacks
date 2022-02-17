@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<stdlib.h>
+int top=-1;
+#define n 4
+struct node
+{
+int data;
+struct node* next;
+}*newnode,*temp;
+struct node* head=NULL;
+struct node* tail=NULL;
+void push()
+{
+++top;
+int val;
+if(top>=n)
+{
+printf("stack overflow\n");
+}
+else
+{
+printf("enter a value to push");
+scanf("%d",&val);
+newnode=(struct node*)malloc(sizeof(struct node));
+newnode->data=val;
+newnode->next=NULL;
+if(head==NULL)
+{
+head=newnode;
+}
+else
+{
+newnode->next=head;
+head=newnode;
+}
+}
+}
+void pop()
+{
+int ele;
+if(top<0)
+{
+printf("stack underflow\n");
+}
+else
+{
+ele=head->data;
+printf("popped item is:%d",ele);
+temp=head;
+head=temp->next;
+temp->next=NULL;
+}
+top--;
+}
+void display()
+{
+if(head==NULL)
+{
+printf("no elements in stack");
+}
+temp=head;
+while(temp!=NULL)
+{
+printf("%d",temp->data);
+temp=temp->next;
+}
+}
+void main()
+{
+int c, k;
+do
+{
+printf("enter ur choice\n1.push\n2.pop");
+scanf("%d",&c);
+switch(c)
+{
+case 1:
+push();
+break;
+case 2:
+pop();
+break;
+}
+printf("enter 0 to exit and 1 to continue");
+scanf("%d",&k);
+}while(k==1);
+display();
+}
